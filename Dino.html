@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+
+    <title>Google Dinozor Oyunu</title>
+
+  </head>
+
+  <body>
+
+    <canvas id="gameCanvas" width="600" height="200"></canvas>
+
+    <script>
+
+      // canvas öğesini al
+
+      var canvas = document.getElementById("gameCanvas");
+
+      var ctx = canvas.getContext("2d");
+
+      // dinozor özellikleri
+
+      var dino = {
+
+        x: 50,
+
+        y: 150,
+
+        width: 50,
+
+        height: 50
+
+      };
+
+      // engel özellikleri
+
+      var obstacle = {
+
+        x: 600,
+
+        y: 165,
+
+        width: 20,
+
+        height: 20
+
+      };
+
+      // oyun döngüsü
+
+      function gameLoop() {
+
+        // canvas temizle
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // dinozoru çiz
+
+        ctx.fillStyle = "green";
+
+        ctx.fillRect(dino.x, dino.y, dino.width, dino.height);
+
+        // engeli çiz
+
+        ctx.fillStyle = "red";
+
+        ctx.fillRect(obstacle.x, obstacle.y, obstacle.width, obstacle.height);
+
+        // engeli hareket ettir
+
+        obstacle.x -= 5;
+
+        // engeli sıfıra ulaştığında yeniden başlat
+
+        if (obstacle.x + obstacle.width < 0) {
+
+          obstacle.x = 600;
+
+        }
+
+        // oyun döngüsünü tekrarla
+
+        requestAnimationFrame(gameLoop);
+
+      }
+
+      // oyunu başlat
+
+      gameLoop();
+
+    </script>
+
+  </body>
+
+</html>
